@@ -1,27 +1,46 @@
+import java.util.Objects;
 public class Book {
-    private final String bookTitle;
-    private final Author authorName;
-    private int publishingYear;
+    private final String title;
+    private final Author author;
+    private int publicationYear;
 
-    public Book(String bookTitle, Author authorName, int publishingYear) {
-        this.bookTitle = bookTitle;
-        this.authorName = authorName;
-        this.publishingYear = publishingYear;
+    public Book(String title, Author author, int publicationYear) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public Author getAuthorName() {
-        return authorName;
+    public Author getAuthor() {
+        return author;
     }
 
-    public int getPublishingYear() {
-        return publishingYear;
+    public int getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setPublishingYear(int publishingYear) {
-        this.publishingYear = publishingYear;
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    public String toString() {
+        return "\"" + title + "\" by " + author.toString() + " (" + publicationYear + ")";
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Book book = (Book) obj;
+        return publicationYear == book.publicationYear &&
+                title.equals(book.title) &&
+                author.equals(book.author);
+    }
+
+    public int hashCode() {
+        return Objects.hash(title, author, publicationYear);
     }
 }
+
